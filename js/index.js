@@ -63,7 +63,7 @@
     console.log(response.data.data)
     const publishedPapers = new PublishList(
                           response.data.data ,
-                          document.querySelector('#portfolio'),
+                          document.querySelector('#published-Papers'),
                         )
                   console.log(  publishedPapers  )
                   publishedPapers.render(publishedPapers)
