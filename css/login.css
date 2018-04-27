@@ -11,7 +11,8 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   background: black;
-  background-image: url('../img/patrick-lindenberg-191841-unsplash.jpg');
+  /* background-image: url('../img/patrick-lindenberg-191841-unsplash.jpg'); */
+  background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.2)), url("../img/patrick-lindenberg-191841-unsplash.jpg") center/cover;
   background-size:100% auto;
   background-repeat:no-repeat;
 }
@@ -36,7 +37,7 @@ body {
   z-index: 2;
 }
 .form-signin input[type="email"] {
-  margin-bottom: -1px;
+  margin-bottom: 5px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -54,6 +55,9 @@ body {
   color: white;
 }
 
+#username {
+    margin-bottom: 5px;
+}
 
 .title-text {
   font-size: 51px;
