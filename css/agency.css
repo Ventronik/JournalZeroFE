@@ -689,3 +689,12 @@ ul.social-buttons li a {
 ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
   background-color: #cd3232;
 }
+
+.apa1, .apa2, .apa-title {
+  font-size: .5rem;
+  display: inline;
+}
+
+.modal-field, .modal-authors {
+  color: #cd3232;
+}

@@ -52,6 +52,13 @@ class PublishList{
 
     const card = document.createElement('div')
     addClassesToElement(card, 'col-md-4', 'col-sm-6', 'portfolio-item')
+    card.setAttribute('data-abstract', paperData.abstract)
+    card.setAttribute('data-field', paperData.field)
+    card.setAttribute('data-status', paperData.status)
+    card.setAttribute('data-publishDate', paperData.updated_at)
+    card.setAttribute('data-siteOfPaper', paperData.url)
+    card.setAttribute('data-title', paperData.title)
+    card.setAttribute('data-authors', paperData.authors)
 
     const modalLink = document.createElement('a')
     addClassesToElement(modalLink, 'portfolio-link')
@@ -77,6 +84,8 @@ class PublishList{
 
     const portfolioCaption = document.createElement('div')
     addClassesToElement(portfolioCaption, 'portfolio-caption')
+    portfolioCaption.setAttribute('data-toggle','modal')
+    portfolioCaption.setAttribute('data-target','#paperModal')
     card.appendChild(portfolioCaption)
 
     const paperTitle = document.createElement('h4')
@@ -88,7 +97,6 @@ class PublishList{
     paperAuthors.innerHTML = paperData.authors
     addClassesToElement(paperAuthors, 'text-muted')
     portfolioCaption.appendChild(paperAuthors)
-
 
     return card
   }
