@@ -56,6 +56,7 @@ class PublishList{
     card.setAttribute('data-field', paperData.field)
     card.setAttribute('data-status', paperData.status)
     card.setAttribute('data-publishDate', paperData.updated_at)
+    console.log(paperData.updated_at)
     card.setAttribute('data-siteOfPaper', paperData.url)
     card.setAttribute('data-title', paperData.title)
     card.setAttribute('data-authors', paperData.authors)

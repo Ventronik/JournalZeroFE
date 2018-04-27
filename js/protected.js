@@ -122,7 +122,4 @@
       document.querySelector('.apa2').innerHTML = apa2
     }
   }
-
-
-
 })();
