@@ -72,7 +72,7 @@
 
 //Update a Paper
   function update(elem){
-    // event.preventDefault()
+    event.preventDefault()
 
     request('/auth/token')
     .then(function(response){
@@ -83,9 +83,14 @@
           status_id = 1
         } else if (paperStatus === 'Peer Review') {
           status_id = 2
-        } else {status_id = 3}
+        } else if  (paperStatus === 'Publish'){
+          status_id = 3
+        } else if (paperStatus === 'Delete') {
+          return request (`/users/${response.data.id}/papers/${paperNum}`, 'delete')
+        }
       return request(`/users/${response.data.id}/papers/${paperNum}`, 'post', {status_id})
     })
+    .then(()=>location.reload())
   }
 
   document.querySelector('.paper-submission').addEventListener('submit',(event)=>update(event))
@@ -93,7 +98,7 @@
 })(jQuery); // End of use strict
 
 
-(function() {
+(function () {
   'use strict';
 
   // authe gate
