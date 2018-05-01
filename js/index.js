@@ -63,7 +63,7 @@
                           response.data.data ,
                           document.querySelector('#published-Papers'),
                         )
-                  console.log(  publishedPapers  )
+                  // console.log(  publishedPapers  )
                   publishedPapers.render(publishedPapers)
 
 

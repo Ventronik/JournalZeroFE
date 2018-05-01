@@ -697,4 +697,21 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 
 .modal-field, .modal-authors {
   color: #cd3232;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+button.btn.btn-secondary.publish-status {
+  background-color: #cd3232;
+}
+
+.delete {
+  background-color: #cd3232;
+  color: white;
+}
+
+
+.dropdown-item:hover{
+  background-color: gray;
+  color: white; 
 }

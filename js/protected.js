@@ -53,8 +53,10 @@
   }
   document.querySelector('.signout').addEventListener('click', signout)
 
+
+//Create a Paper
   function submit(){
-    // event.preventDefault()
+    event.preventDefault()
 
     const title = event.target.title.value
     const authors = event.target.authors.value
@@ -64,16 +66,30 @@
 
     request('/auth/token')
     .then(function(response){
-      console.log('response',response)
       return request(`/users/${response.data.id}/papers`, 'post', {title, authors, field, url, abstract})
-      .then(function(newPaper){
-        console.log('newpaper', newPaper)
-      })
     })
   }
 
-  document.querySelector('.paper-submission').addEventListener('submit',submit)
-    // event.target
+//Update a Paper
+  function update(elem){
+    // event.preventDefault()
+
+    request('/auth/token')
+    .then(function(response){
+      let paperNum = document.querySelector('.paperStatusChange').getAttribute('data-paper_id')
+      let paperStatus = document.querySelector('.publish-status').innerHTML
+      let status_id = '';
+        if(paperStatus === 'Pending') {
+          status_id = 1
+        } else if (paperStatus === 'Peer Review') {
+          status_id = 2
+        } else {status_id = 3}
+      return request(`/users/${response.data.id}/papers/${paperNum}`, 'post', {status_id})
+    })
+  }
+
+  document.querySelector('.paper-submission').addEventListener('submit',(event)=>update(event))
+
 })(jQuery); // End of use strict
 
 
@@ -88,18 +104,18 @@
 
   })
   .then(function(response){
+
     const publishedPapers = new PublishList(
-                          response.data.data ,
+                          response.data.data,
                           document.querySelector('#published-Papers'),
                         )
-                  publishedPapers.render(publishedPapers)
+                        publishedPapers.render(publishedPapers)
 
 
-                  let cards = document.querySelectorAll('.portfolio-item')
-
-                  cards.forEach(function(elem) {
-                    elem.addEventListener("click", myModal(elem));
-                  })
+      let cards = document.querySelectorAll('.portfolio-item')
+      cards.forEach(function(elem) {
+        elem.addEventListener("click", myModal(elem));
+      })
   })
   .catch(function(error){
     // user is not logged in
@@ -109,6 +125,7 @@
   function myModal(paper){
     return function(event){
       document.querySelector('#paperModalLabel').innerHTML = paper.getAttribute('data-title')
+      document.querySelector('.paperStatusChange').setAttribute('data-paper_id', paper.getAttribute('data-Id'))
       document.querySelector('.modal-abstract').innerHTML = paper.getAttribute('data-abstract')
       document.querySelector('.modal-link').setAttribute('href', paper.getAttribute('data-siteOfPaper'))
       document.querySelector('.modal-authors').innerHTML = paper.getAttribute('data-authors')
@@ -120,6 +137,17 @@
       document.querySelector('.apa1').innerHTML = apa1
       document.querySelector('.apa-title').innerHTML = apaTitle
       document.querySelector('.apa2').innerHTML = apa2
+      document.querySelector('.publish-status').innerHTML = paper.getAttribute('data-status')
     }
   }
+
+  let statusSelector = document.querySelectorAll('.dropdown-item')
+  statusSelector.forEach(function(elem) {
+    elem.addEventListener('click',()=>{buttonTextChange(elem)});
+  })
+
 })();
+
+function buttonTextChange (selection) {
+  document.querySelector('.publish-status').innerHTML = selection.innerHTML
+}
