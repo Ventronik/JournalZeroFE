@@ -55,7 +55,7 @@
 
 
 //Create a Paper
-  function submit(){
+    function submit(){
     event.preventDefault()
 
     const title = event.target.title.value
